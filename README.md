@@ -91,6 +91,9 @@ repository secrets under **Settings → Secrets and variables → Actions**:
 - `VITE_SUPABASE_PUBLISHABLE_KEY`
 - `VITE_SUPABASE_PROJECT_ID` (optional for the current client, but kept with the Supabase config)
 
+The workflow also accepts `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` as fallback names if those
+are already the names used by your hosting provider.
+
 Push to `main` to build and deploy the static client. The workflow publishes `dist/client`, adds
 the SPA `404.html` fallback for direct links, and automatically uses the repository name as the
 GitHub Pages base path. Add the deployed Pages URL to Supabase Auth's site URL and redirect URLs,
