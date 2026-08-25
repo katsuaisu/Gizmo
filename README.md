@@ -81,6 +81,26 @@ npm run preview      # serve the production build locally
 
 Other scripts: `npm run lint` (ESLint) and `npm run format` (Prettier).
 
+## Deploy to Vercel
+
+This project is already linked to the Vercel project `gizmo`. The included `vercel.json` publishes
+the prerendered browser app from `dist/client` and supports direct links to nested routes. Vercel
+installs with `bun install` and builds with `bun run build && bun run prerender`. To deploy from the
+terminal:
+
+```sh
+vercel login
+vercel link
+vercel env add VITE_SUPABASE_URL production
+vercel env add VITE_SUPABASE_PUBLISHABLE_KEY production
+vercel --prod
+```
+
+The Supabase URL and publishable key are safe browser-facing values. Never add the service-role key
+to a `VITE_` variable or expose it in client code. For automatic deployments, import the GitHub
+repository in Vercel and set the same environment variables under **Project Settings → Environment
+Variables**, at least for **Production** and **Preview**.
+
 ## Deploy to GitHub Pages
 
 The repository includes a workflow at `.github/workflows/deploy-pages.yml`. In the GitHub
