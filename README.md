@@ -81,6 +81,21 @@ npm run preview      # serve the production build locally
 
 Other scripts: `npm run lint` (ESLint) and `npm run format` (Prettier).
 
+## Deploy to GitHub Pages
+
+The repository includes a workflow at `.github/workflows/deploy-pages.yml`. In the GitHub
+repository settings, enable **Pages** with **GitHub Actions** as the source, then add these
+repository secrets under **Settings → Secrets and variables → Actions**:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+- `VITE_SUPABASE_PROJECT_ID` (optional for the current client, but kept with the Supabase config)
+
+Push to `main` to build and deploy the static client. The workflow publishes `dist/client`, adds
+the SPA `404.html` fallback for direct links, and automatically uses the repository name as the
+GitHub Pages base path. Add the deployed Pages URL to Supabase Auth's site URL and redirect URLs,
+and add it to the Google OAuth callback configuration if Google sign-in is enabled.
+
 ## Database
 
 The schema lives in `supabase/migrations/`: `profiles`, `subjects`, `quarter_grades`, `decks`,
